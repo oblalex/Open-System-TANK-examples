@@ -1,23 +1,41 @@
 /**
  * Displays "This is\nTank!" message to LCD.
+ * Press SB3 to turn backlight off.
+ * Press SB4 to turn backlight on.
  */
 #define F_CPU 16000000UL
 
-#include <avr/io.h>
+#include <util/delay.h>
 #include <stdio.h>
 
-#include "LCD/hd44780.h"
-#include "LCD/hd44780_hw.h"
+#include "buttons.h"
+#include "LCD.h"
+
+void run();
 
 int main(void){
-
-	lcd_init(LCD_DISP_ON);
-	lcd_clrscr();
+	initButtons();
+	initLCD();
 
 	FILE lcd_str = FDEV_SETUP_STREAM(lcd_putc_stream, NULL, _FDEV_SETUP_WRITE);
-	stderr = &lcd_str;
+	stdout = &lcd_str;
 
-	fprintf(stderr, "This is\nTank!");
+	run();
 
 	return 0;
+}
+
+void run(){
+	lcd_backlight_on();
+	fprintf(stdout, "This is\nTank!");
+
+	while (1){
+		if (isButtonPressed(SB4)){
+			lcd_backlight_on();
+		} else
+		if (isButtonPressed(SB3)){
+			lcd_backlight_off();
+		}
+		_delay_ms(50);
+	}
 }
