@@ -7,7 +7,8 @@
 #include "leds.h"
 
 int main(void){
-	DDRG  = 0xFF; // set all register G pins to output
-	PORTG = (1 << LED_RED_POS) | (1 << LED_GREEN_POS);
+	initLEDs();
+	LEDon(LED_GREEN);
+	LEDon(LED_RED);
 	return 0;
 }

@@ -9,13 +9,15 @@
 #include <util/delay.h>
 #include "leds.h"
 
-unsigned char led_r = 1;
-unsigned char led_g = 0;
+char led_r = 1;
+char led_g = 0;
 
 int main(void){
-	DDRG  = 0xFF;
+	initLEDs();
+
 	while (1){
-		PORTG = (led_r << LED_RED_POS) + (led_g << LED_GREEN_POS);
+		LEDset(LED_RED, led_r);
+		LEDset(LED_GREEN, led_g);
 
 		led_r ^= 1;
 		led_g ^= 1;
