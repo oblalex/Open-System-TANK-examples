@@ -1,5 +1,5 @@
 /**
- * Displays light frequency on LCD.
+ * Displays inductor-driven frequency on LCD.
  */
 #define F_CPU 16000000UL
 
@@ -8,7 +8,7 @@
 #include <stdio.h>
 
 #include "LCD.h"
-#include "LFM.h"
+#include "IFM.h"
 
 void init();
 void run();
@@ -26,7 +26,7 @@ int main(void){
 
 void init(){
 	initLCD();
-	initLFM();
+	initIFM();
 	sei();
 }
 
@@ -34,7 +34,7 @@ void run(){
 	while(1){
 		lcd_clrscr();
 		lcd_gotoxy(0,0);
-		fprintf(stdout, "%d Hz", lightFrequency);
+		fprintf(stdout, "%2d.%1d kHz", inductiveFrequency/1000, inductiveFrequency%1000/100);
 		_delay_ms(MAIN_LOOP_DELAY_MS);
 	}
 }
