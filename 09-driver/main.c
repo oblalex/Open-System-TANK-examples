@@ -1,9 +1,13 @@
 /**
- * Plays 7 notes via buzzer and T1.
- * Current note's frequency is displayed on LCD.
+ * Controls 3 state per each track driver.
+ * State 0 - driver is stopped.
+ * State 1 - driver is rotating forwards.
+ * State 2 - driver is rotating backwards.
  *
- * Press SB3 to increase frequency.
- * Press SB4 to decrease frequency.
+ * Current states for each driver are displayed on LCD.
+ *
+ * Press SB3 to change right driver's state.
+ * Press SB4 to change left driver's state.
  */
 #define F_CPU 16000000UL
 
