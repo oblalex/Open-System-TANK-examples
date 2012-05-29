@@ -5,7 +5,7 @@
  * Read ATmega64A datasheet.
  * Look here for help: http://www.et06.dk/atmega_timers
  *
- * !! There is an addictive frequency deviation between
+ * !! There is an additive frequency deviation between
  * !! changes of counters. It can be noticed after
  * !! 30-40 seconds of runtime
  */
@@ -56,11 +56,7 @@ void initTimer0(){
 ISR(TIMER0_OVF_vect){
 unsigned static char ct0_0 = 0;
 	if (ct0_0 == 250 ){
-
-		if (counter_0>100000000){
-			counter_0 = 0;
-		} else counter_0++;
-
+		counter_0++;
 		ct0_0 = 0;
 	} else ct0_0++;
 }
@@ -74,11 +70,7 @@ void initTimer2(){
 ISR(TIMER2_OVF_vect){
 unsigned static char ct2_0 = 0;
 	if (ct2_0 == 100){
-
-		if (counter_2>100000000){
-			counter_2 = 0;
-		} else counter_2++;
-
+		counter_2++;
 		ct2_0 = 0;
 	} else ct2_0++;
 }
