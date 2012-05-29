@@ -43,7 +43,7 @@ ISR(INT3_vect){
 }
 
 ISR(TIMER3_COMPA_vect){
-	lightFrequency = LFMcounter * LFMcounter;
+	lightFrequency = LFMcounter * SAMPLES_PER_SECOND;
 	LFMcounter = 0;
 	TCNT3 = 0;
 }
